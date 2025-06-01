@@ -25,11 +25,14 @@ export class IdentityGuard implements CanActivate {
     if (isPublic) {
 
       return true;
+      
     }
+     
     const requests = context.switchToHttp().getRequest();
     try {
        
       const token = this.extractTokenFromHeader(requests);
+     
       //check toke is there or not
       if (!token) {
         throw new UnauthorizedException('Token Required');
@@ -40,6 +43,8 @@ export class IdentityGuard implements CanActivate {
         secret: jwtConstants.secret,
       });
       requests.userId = payload.sub;
+     
+      
       requests.userType = payload.userType;
        return true;
     } catch (error) {

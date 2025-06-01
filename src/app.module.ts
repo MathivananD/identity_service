@@ -6,12 +6,18 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { IdentityGuard } from './config/identity.guard';
+import { ConfigModule } from '@nestjs/config';
 export const jwtConstants = {
     secret: '1234',
   };
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb://0.0.0.0:27017/idenity"),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+      expandVariables: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGODBURL),
      JwtModule.register({
       secret: jwtConstants.secret,
       global: true,

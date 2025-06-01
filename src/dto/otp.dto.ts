@@ -14,17 +14,24 @@ import {
 } from '@nestjs/class-validator';
 import { OtpType } from 'src/common/utils/enums';
 
-export class OtpDto {
+export class MobileOtpDto {
   @Matches(/^\d+$/, { message: 'Mobile number must contain digits only' })
   @Matches(/^\d{10}$/, { message: 'Mobile number must be exactly 10 digits' })
-  @IsOptional()
+  @IsNotEmpty()
   mobileNo: string;
+ 
+
+}
+
+
+export class EmailOtpDto {
+
   @IsEmail()
-  @IsOptional()
   email: string;
   @IsNotEmpty()
   @IsEnum(OtpType)
-  otpType: OtpType;
+  otpType: OtpType.email;
+  
 }
 
 
@@ -34,6 +41,4 @@ export class VerifyOtpDto {
   otp: string;
   @IsNotEmpty()
   otpId: string;
-  @IsEnum(OtpType)
-  otpType: OtpType;
 }

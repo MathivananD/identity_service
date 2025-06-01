@@ -1,6 +1,6 @@
 export enum OtpType{
     email="email",
-    sms="sms",
+    mobileNo="mobileNo",
     whatsApp="whatsApp"
 }
 

@@ -1,8 +1,10 @@
-export class CustomCodes{
-    private readonly success=200;
-    private readonly error=400;
-    private readonly userNotFound=301;
-    private readonly passwordNotMatched=302;
-    private readonly otpExpired=303;
-    private readonly InvalidOtp=304;
+export class CustomCodes {
+  static success = 200;
+  static error = 400;
+  static userNotFound = 301;
+  static passwordNotMatched = 302;
+  static otpExpired = 303;
+  static InvalidOtp = 304;
+  static blocked = 305;
+  static failure = 600;
 }
